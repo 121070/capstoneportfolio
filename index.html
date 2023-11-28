@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="Script.js"></script>
+    <title>Documents</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+
+    <div class="card">
+        <div class="search">
+            <input type="text" placeholder="enter city name" spellcheck="false">
+            <button><img src="https://img.icons8.com/?size=48&id=12773&format=png"></button>
+        </div>
+        <div class="error">
+            <p>Invalid city name</p>
+        </div>
+        <div class="weather">
+            <img src="https://img.icons8.com/?size=80&id=39456&format=png" class="weather-icon">
+            <h1 class="temp">22°c</h1>
+            <h2 class="city">Kentucky</h2>
+            <div class="details">
+                <div class="col">
+                    <img src="https://img.icons8.com/?size=80&id=32623&format=png">
+                    <div>
+                        <p class="humidity">50%</p>
+                        <p>humidity</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <img src="https://img.icons8.com/?size=80&id=xq2DLxld69JZ&format=png">
+                    <div>
+                        <p class="wind">15 km/h</p>
+                        <p>Wind Speed</p>
+                    </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+    
+    const apiKey ="310d2a289a51d50932dcae754d32a34f";
+    const apiUrl =`https://pro.openweathermap.org/data/2.5/weather?units=metric&q=`;
+    
+    const searchBox = document.querySelector(".search input");
+    const searchBtn = document.querySelector(".search button");
+    const weatherIcon = document.querySelector(".weather-icon");
+    
+    async function checkWeather(city){
+        const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
+    
+    
+        if(response.status == 404){
+            document.querySelector(".error").style.display = "block";
+            document.querySelector(".weather").style.display = "none";
+        }else{
+            var data = await response.json();
+    
+        document.querySelector(".city").innerHTML = data.name;
+        document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°c";
+        document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
+        document.querySelector(".wind").innerHTML = data.wind.speed + " km/h";
+    
+        if(data.weather[0].main == "Clouds"){
+            weatherIcon.src = "https://img.icons8.com/?size=80&id=39327&format=png";
+        }
+        else if(data.weather[0].main == "Clear"){
+            weatherIcon.src = "https://img.icons8.com/?size=80&id=30068&format=png";
+        }
+        else if(data.weather[0].main == "Rain"){
+            weatherIcon.src = "https://img.icons8.com/?size=80&id=39336&format=png"
+        }
+        else if(data.weather[0].main == "Drizzle"){
+            weatherIcon.src = "https://img.icons8.com/?size=80&id=39337&format=png"
+        }
+        else if(data.weather[0].main == "Mist"){
+            weatherIcon.src = "https://img.icons8.com/?size=80&id=39457&format=png"
+        }
+    
+        document.querySelector(".weather").style.display = "block";
+        document.querySelector(".error").style.display = "none";
+        }
+    
+       
+       
+    }
+    
+    
+    searchBtn.addEventListener("click", ()=>{
+        checkWeather(searchBox.value);
+    })
+    
+    
+    </script>
+    
+    
+    </body>
+    </html>
+
+<header>
+    <nav class="nav">
+        <a href="/" class="logo"><span class="highlighted">
+
+        <div class="nav-links">   
+          <a href="#home" class="nav-item-active">Home</a>
+          <a href="#about" class="nav-item">About</a>
+          <a href="#services" class="nav-item">Services</a>
+          <a href="projects" class="nav-item">projects</a>
+          <a href="#contact" class="nav-item">contact</a>
+        </div>
+        
+        <div class="toggler">
+            <span class="line"></span><span class="line"></span
+            ><span class="line"></span>
+        </div>
+    </nav>
+</header>
+
+<section class="hero container" id="home">
+    <div class="hero-info">
+        <h1 class="title">David <span class="highlighted">McCoy</span></h1>
+        <p class="hero-description">web developer</p>
+        <a href="#services" class="btn hero-btn">Services</a>
+    </div>
+
+    <div class="hero-img">
+        <img src="NBX_Snapshot_2023-10-14_17-16-05-203.png" alt="David McCoy" />
+    </div>
+<section class="about container" id="about">
+    <div class="about-img">
+    </div>
+</section>
+
+<section>
+    <div class="about-info">
+        <h2 class="secondery-title">About Me</h2>
+
+        <p class="description">
+            I am a web developer.
+            I work with html, css, javaScript.
+        </p>
+
+        <a href="#" class="btn btn-secondary">More</a>
+    </div>
+</section>
+
+<section>
+    <div class="Services container" id="services">
+        <div class="services-header">
+            <h2 class="secondery-title">Services</h2>
+        </div>
+
+        <div class="grid services-grid">
+            <div class="grid-item services-item">
+                <i class="fa-solid fa-computer"></i>
+                <h3>Website Design</h3>
+                <p class="description">
+                    Website done in html, css, javaScript.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="projects container" id="projects">
+    <div class="projects-header">
+        <h2 class="seondery-title">projects</h2>
+
+        <div class="projects-tab">
+              <body>
+                 <div class="card">
+            
+                    <div class="projects-tab">
+                     <a href="https://github.com/121070?tab=repositories">click the link to view my projects</a>
+                    </div>
+                </div>
+            
+                <div class="grid projects-grid">
+                    <div class="grid-item projects-item all design">
+                    </div>
+                </div>
+            </section>
+            
+            <section class="container contact" id="contact">
+                <div class="contact-info">
+                    <h2 class="secondery-title">Contact</h2>
+                    <div class="info-container">
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div class="contact-info-data">
+                                <h3>Address</h3>
+                                <p>329 Hogston cem. rd.</p>
+                            </div>
+                        </div>
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div class="contact-info-data">
+                                <h3>Email</h3>
+                                <p>super_davelchs1@yahoo.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon">
+                                <i class="fa-solid fa-phone-volume"></i>
+                            </div>
+                            <div class="contact-info-data">
+                                <h3>Phone</h3>
+                                <p>000-111-2221</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form>
+                        <input type="text" placeholder="Name" />
+                        <input type="text" placeholder="Email" />
+                        <textarea
+                        name="message"
+                        id=""
+                        cols="30"
+                        rows="10"
+                        placeholder="Message"
+                        ></textarea>
+                        <button class="btn submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </section>
+                 <footer class="footer">
+                    <p>Thanks for looking at my page</p>
+                 </footer>
+              </body>
+            </html>
+        </div>
+    </div>
+
+    <div class="grid projects-grid">
+        <div class="grid-item projects-item all design">
+        </div>
+    </div>
+</section>
+  
